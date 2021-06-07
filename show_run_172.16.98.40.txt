@@ -1,0 +1,232 @@
+Building configuration...
+
+Current configuration : 5650 bytes
+!
+version 12.2
+no service pad
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+!
+hostname Edificio_juarez
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$z7Nr$RvV8Wi5nJMAFFtcCiWksR1
+enable password S1teur**
+!
+username Soporte password 0 Soporte123
+!
+!
+no aaa new-model
+switch 1 provision ws-c2960s-24ts-l
+!
+!
+ip domain-name SITEUR
+!
+!
+crypto pki trustpoint TP-self-signed-710592128
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-710592128
+ revocation-check none
+ rsakeypair TP-self-signed-710592128
+!
+!
+crypto pki certificate chain TP-self-signed-710592128
+ certificate self-signed 01
+  30820246 308201AF A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 37313035 39323132 38301E17 0D393330 33303130 30303233 
+  375A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3731 30353932 
+  31323830 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  C3344972 3BE0407F 43C8E39B 35CCDFB2 64921A7E B8D6B95C 4C6B4ED4 EFBE524A 
+  20D368FA 81ADC021 FFBCEE88 D97F0EA7 E6A71249 33BE2700 D17364BD 11520164 
+  166B0A0E 5A75DC6D 65B23655 E4AAF31F 5771E6CD 6EFADEBA 22CCD831 E2CBB8A6 
+  8BB99D37 F2EC5112 6BF827D0 7A05A4D5 3F652968 90FD0239 B16A7293 CA3E8C8B 
+  02030100 01A37030 6E300F06 03551D13 0101FF04 05300301 01FF301B 0603551D 
+  11041430 12821045 64696669 63696F5F 6A756172 657A2E30 1F060355 1D230418 
+  30168014 867A048D 0B284998 C178E6BD 85C0B849 C1646B8E 301D0603 551D0E04 
+  16041486 7A048D0B 284998C1 78E6BD85 C0B849C1 646B8E30 0D06092A 864886F7 
+  0D010104 05000381 810023C6 419C7647 5B14C5B7 8C11EE6B 69DD998D 444595CD 
+  64F37C7D EB959606 BC4F2539 8A481288 95C11F42 30439D1B 717945C6 8FB4C2F0 
+  C7E1EC43 113E4C94 9FE10CCB 22704DBB DC14E895 51BADF21 EFE6BE1D 02DF9669 
+  08E1FEF7 6794EAEF 21A4624B 51337B25 6BDECA12 55FC9980 088D929B 11333AE2 
+  8AF57BC9 203E48C0 4765
+  quit
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+lldp run
+!
+!
+interface FastEthernet0
+ no ip address
+!
+interface GigabitEthernet1/0/1
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ description social
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ description Social-01
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 110
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ description social-02
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ description escaner
+ switchport access vlan 12
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ description AP Sec Part
+ switchport access vlan 60
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ description Acces point
+ switchport access vlan 110
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ description hplj4100 piso3
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ description Juridico
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 101
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ description Juridico
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ description christy
+ switchport access vlan 101
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 101
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ description hplj4010 piso2
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ description social-03
+ switchport access vlan 102
+ switchport voice vlan 72
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface Vlan1
+ ip address 172.16.98.40 255.255.255.0
+!
+ip default-gateway 172.16.98.1
+ip http server
+ip http secure-server
+ip sla enable reaction-alerts
+snmp-server community i2ZNiAkE RO
+snmp-server community 3JcRe0JP RW
+!
+line con 0
+ exec-timeout 0 0
+line vty 0 4
+ password S1teur**
+ login
+ transport input telnet
+line vty 5 15
+ password S1teur**
+ login local
+ transport input ssh
+!
+end
