@@ -1,12 +1,12 @@
 Building configuration...
 
-Current configuration : 26388 bytes
+Current configuration : 26486 bytes
 !
 version 12.2
 no service pad
 service timestamps debug datetime msec
 service timestamps log datetime msec
-no service password-encryption
+service password-encryption
 service compress-config
 service sequence-numbers
 !
@@ -15,9 +15,10 @@ hostname SITE_TETLAN
 boot-start-marker
 boot-end-marker
 !
-enable password siteurcisco
+enable secret 5 $1$XBoE$oLXpL1WYA03rzR57P5TMI0
+enable password 7 095F471D1C100511021F0725
 !
-username Soporte password 0 Soporte123
+username Soporte password 7 06350031435C1D1C544541
 no aaa new-model
 qos
 ip subnet-zero
@@ -1151,6 +1152,7 @@ interface Vlan75
 !
 interface Vlan80
  ip address 192.168.4.1 255.255.255.0
+ shutdown
 !
 interface Vlan81
  ip address 172.16.81.1 255.255.255.0
@@ -1196,7 +1198,7 @@ control-plane
 line con 0
  stopbits 1
 line vty 0 4
- password siteurcisco
+ password 7 11271C12341B180F0B7B797769
  login
  transport input telnet
 line vty 5 15

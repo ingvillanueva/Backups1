@@ -1,22 +1,22 @@
 Building configuration...
 
-Current configuration : 5650 bytes
+Current configuration : 5703 bytes
 !
 version 12.2
 no service pad
 service timestamps debug uptime
 service timestamps log uptime
-no service password-encryption
+service password-encryption
 !
 hostname Edificio_juarez
 !
 boot-start-marker
 boot-end-marker
 !
-enable secret 5 $1$z7Nr$RvV8Wi5nJMAFFtcCiWksR1
-enable password S1teur**
+enable secret 5 $1$YQVW$kbavdT/qfITcXr2XrCWwO0
+enable password 7 0235554F0E131D6B06
 !
-username Soporte password 0 Soporte123
+username Soporte password 7 012009145419120A701E1D
 !
 !
 no aaa new-model
@@ -221,11 +221,11 @@ snmp-server community 3JcRe0JP RW
 line con 0
  exec-timeout 0 0
 line vty 0 4
- password S1teur**
+ password 7 1237000031021F07257A767B72
  login
  transport input telnet
 line vty 5 15
- password S1teur**
+ password 7 06355E35495B1B534F
  login local
  transport input ssh
 !
