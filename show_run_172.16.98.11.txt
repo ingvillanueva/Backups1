@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 4744 bytes
+Current configuration : 4803 bytes
 !
 version 12.2
 no service pad
@@ -13,6 +13,7 @@ hostname Sitren
 boot-start-marker
 boot-end-marker
 !
+enable secret 5 $1$dC8o$J/wfKhWKRI5POgWjjTFUz1
 enable password 7 0337723F233A13
 !
 username Soporte password 7 13361802041E102F7A767B
@@ -188,7 +189,7 @@ line con 0
  password 7 01202F307E3E34
  login
 line vty 0 4
- password 7 01202F307E3E34
+ password 7 132B12052805172924757A6074
  login
  transport input telnet
 line vty 5 15

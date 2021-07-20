@@ -1,23 +1,23 @@
 Building configuration...
 
-Current configuration : 3937 bytes
+Current configuration : 3988 bytes
 !
 version 12.2
 service config
 no service pad
 service timestamps debug datetime msec
 service timestamps log datetime msec
-no service password-encryption
+service password-encryption
 !
 hostname PERI-NORTE-IDF
 !
 boot-start-marker
 boot-end-marker
 !
-enable secret 5 $1$EAQj$xg4qpCCZCf5SDYp9skW2n1
-enable password SITEUR
+enable secret 5 $1$iGM4$PNK2rp1tggCIoUsOcevlj/
+enable password 7 0337723F233A13
 !
-username Soporte password 0 Soporte123
+username Soporte password 7 107D06090A05060E5D5679
 !
 !
 no aaa new-model
@@ -155,11 +155,11 @@ ip sla enable reaction-alerts
 !
 line con 0
 line vty 0 4
- password SITEUR
+ password 7 1439171C2F0D39282B79616663
  login
  transport input telnet
 line vty 5 15
- password SITEUR
+ password 7 0812657A2C2C37
  login local
  transport input ssh
 !

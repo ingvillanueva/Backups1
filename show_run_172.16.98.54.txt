@@ -1,22 +1,22 @@
 Building configuration...
 
-Current configuration : 4288 bytes
+Current configuration : 4339 bytes
 !
 version 12.2
 no service pad
 service timestamps debug datetime msec
 service timestamps log datetime msec
-no service password-encryption
+service password-encryption
 !
 hostname MDF_Provisional
 !
 boot-start-marker
 boot-end-marker
 !
-enable secret 5 $1$RYAU$IEyllEF/tS.OlIY9dpUx6.
-enable password SITEUR
+enable secret 5 $1$b4Yf$h39Zj1ZxL9fJ4/iNduHFi0
+enable password 7 05382F3B04797C
 !
-username Soporte password 0 Soporte123
+username Soporte password 7 097F4119161703175A5E57
 !
 !
 no aaa new-model
@@ -167,11 +167,11 @@ ip sla enable reaction-alerts
 !
 line con 0
 line vty 0 4
- password SITEUR
+ password 7 10600C0E261E01080355787865
  login
  transport input telnet
 line vty 5 15
- password SITEUR
+ password 7 122A2C23373E3E
  login local
  transport input ssh
 !
