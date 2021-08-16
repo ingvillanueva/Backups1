@@ -1,6 +1,9 @@
 Building configuration...
 
-Current configuration : 26486 bytes
+Current configuration : 26652 bytes
+!
+! Last configuration change at 13:52:14 UTC Tue Jul 27 2021
+! NVRAM config last updated at 10:39:06 UTC Thu Jul 22 2021
 !
 version 12.2
 no service pad
@@ -30,6 +33,7 @@ cluster run
 !
 !
 !
+errdisable recovery cause channel-misconfig
 power redundancy-mode redundant
 !
 !
