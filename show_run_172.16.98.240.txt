@@ -1,0 +1,458 @@
+!Software Version V200R007C00SPC500
+#
+sysname Cuadro
+#
+voice-vlan mac-address 4862-7600-0000 mask ffff-ff00-0000
+#
+vlan batch 2 4 19 60 to 61 71 73 100 to 120
+#
+stp disable
+#
+poe power-management manual slot 0
+#
+telnet server enable
+#
+lldp enable
+#
+observe-port 1 interface GigabitEthernet0/0/34
+#
+diffserv domain default
+#
+drop-profile default
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user admin password irreversible-cipher %#%#tHR(Q"]FQK^ki2<l7nFV!6\L112$n.lctjHN\MlWVy_B7f%c6-EiX>3/#Er)%#%#
+ local-user admin service-type telnet ssh ftp
+ local-user soporte password irreversible-cipher %#%#M)~B~Y\{$(*KHrFneT9R</BX"/f-{(xb*rG/AmXHctmtK#9|F#b8<]3do.sF%#%#
+ local-user soporte privilege level 15
+ local-user soporte service-type ssh ftp
+#
+interface Vlanif1
+ ip address 172.16.98.240 255.255.255.0
+#
+interface MEth0/0/1
+#
+interface GigabitEthernet0/0/1
+ description conexion a cisco
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/2
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 105
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 105
+#
+interface GigabitEthernet0/0/3
+ description ok Sitren Lucia
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 114
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 114
+ poe power 6000
+#
+interface GigabitEthernet0/0/4
+ shutdown
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 105
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 105
+ undo poe enable
+#
+interface GigabitEthernet0/0/5
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 105
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 105
+#
+interface GigabitEthernet0/0/6
+ description ok--51404 D07 Isela Corona
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 106
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 106
+#
+interface GigabitEthernet0/0/7
+ description ext51405
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 108
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 108
+#
+interface GigabitEthernet0/0/8
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 102
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 102
+#
+interface GigabitEthernet0/0/9
+ description V2002 Impresora Gerencia-Info
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet0/0/10
+ description D2014 -- 51566-- Carolina Mejia
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 101
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 101
+#
+interface GigabitEthernet0/0/11
+ description D_2033 Copiadora Kyocera
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 101
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 101
+#
+interface GigabitEthernet0/0/12
+ description Contraloria Externa
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet0/0/13
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/14
+ description Extension 51578
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet0/0/15
+ description V_2007 Maria Cristina Rodriguez
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 108
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 108
+#
+interface GigabitEthernet0/0/16
+ description impresora informatica
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet0/0/17
+ description D_2002 PC Cámaras Commer
+ port link-type access
+#
+interface GigabitEthernet0/0/18
+ description maq cctv admon
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 101
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 101
+#
+interface GigabitEthernet0/0/19
+ description ext 51543
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 101
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 101
+#
+interface GigabitEthernet0/0/20
+ description Ext 51310
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 108
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 108
+#
+interface GigabitEthernet0/0/21
+ description antes Cisco G0/32
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 107
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 107
+#
+interface GigabitEthernet0/0/22
+ description antes Cisco G0/37
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 107
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 107
+#
+interface GigabitEthernet0/0/23
+ description Videoconferencia
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 73
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 73
+#
+interface GigabitEthernet0/0/24
+ description Ext 51656 SET Base
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet0/0/25
+ description ...
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 103
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 103
+#
+interface GigabitEthernet0/0/26
+ description D_2001 PC Ing Commer
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 107
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 107
+#
+interface GigabitEthernet0/0/27
+ description sala de juntas
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet0/0/28
+ description D_2044 Manuel Parra
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 103
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 103
+#
+interface GigabitEthernet0/0/29
+ description access point
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+ undo poe enable
+#
+interface GigabitEthernet0/0/30
+ description Maquina Desp. Torre
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 114
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 114
+#
+interface GigabitEthernet0/0/31
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 101
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 101
+#
+interface GigabitEthernet0/0/32
+ description Ext 51447
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 105
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 105
+ stp edged-port enable
+#
+interface GigabitEthernet0/0/33
+ description Maq Comunicacion
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 103
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 103
+#
+interface GigabitEthernet0/0/34
+ description ext 51401
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 101
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 101
+#
+interface GigabitEthernet0/0/35
+ description ...
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 108
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 108
+#
+interface GigabitEthernet0/0/36
+ description Pagos - Ex. 51420
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 108
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 108
+#
+interface GigabitEthernet0/0/37
+ description Dir Tec
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 101
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 101
+#
+interface GigabitEthernet0/0/38
+ description Camara Fosa
+ port link-type access
+ voice-vlan 71 enable
+#
+interface GigabitEthernet0/0/39
+ description Ext 51305
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 105
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 105
+ undo poe enable
+#
+interface GigabitEthernet0/0/40
+ description Checador Torre
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 110
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 110
+#
+interface GigabitEthernet0/0/41
+ description Medidor Digital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet0/0/42
+ description Medidor Digital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet0/0/43
+ description Medidor Digital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet0/0/44
+ description Medidor Digital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet0/0/45
+ description Medidor Digital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet0/0/46
+ description V_2014 Camara Caja chica
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid tagged vlan 71
+#
+interface GigabitEthernet0/0/47
+ description Ext 51591
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 114
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 114
+#
+interface GigabitEthernet0/0/48
+ description AP Commer SIT-GINF
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface XGigabitEthernet0/0/1
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface XGigabitEthernet0/0/2
+ shutdown
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface XGigabitEthernet0/0/3
+#
+interface XGigabitEthernet0/0/4
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 1.1.1.1 255.255.255.0
+#
+ip route-static 0.0.0.0 0.0.0.0 172.16.98.1
+#
+snmp-agent
+snmp-agent local-engineid 800007DB03845B12779630
+snmp-agent sys-info version v3
+#
+ssh server compatible-ssh1x enable
+stelnet server enable
+ssh authentication-type default password
+ssh user soporte
+ssh user soporte authentication-type password
+ssh user soporte service-type stelnet
+ssh client first-time enable
+#
+user-interface maximum-vty 15
+user-interface con 0
+ authentication-mode password
+ set authentication password cipher $1a$9'Xx/yr&a%$P[YM=e6b=4oyvkM_0`sOE5-$&*V_EO{;D"U.<8qF$
+user-interface vty 0 4
+ authentication-mode password
+ user privilege level 15
+ set authentication password cipher $1a$Yl<EWs=F:R$1qv#6n^(7/!EolDV>QD&Pe>)H.<!Y!H#=1FuoJMJ$
+ history-command max-size 30
+ protocol inbound telnet
+user-interface vty 5 14
+ authentication-mode aaa
+ user privilege level 15
+user-interface vty 16 20
+ authentication-mode aaa
+ user privilege level 15
+#
+return
