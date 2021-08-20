@@ -1,0 +1,459 @@
+!Software Version V200R007C00SPC500
+#
+sysname Almacen
+#
+voice-vlan mac-address 4862-7600-0000 mask ffff-ff00-0000
+#
+vlan batch 2 4 19 60 to 61 71 73 100 to 120
+#
+stp disable
+#
+poe power-management manual slot 0
+#
+telnet server enable
+#
+lldp enable
+#
+clock timezone Mexico_City,Monterrey minus 06:00:00
+#
+clock daylight-saving-time -5 repeating 02:00 first Sun Apr 02:00 last Sun Oct 01:00 2000 2099
+#
+diffserv domain default
+#
+drop-profile default
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user admin password irreversible-cipher %#%#4WHJIj+tL-D9oCQ+W@p+_IOlH=*oSYD,.2A:k7%+oJI<22""D>';pDLBr(jR%#%#
+ local-user admin privilege level 15
+ local-user admin service-type terminal ssh
+ local-user ansible password irreversible-cipher %#%#i`sI&Tt^a/>jtJUjdXONZ;hQ:2[kw@*_[f9_>c_'*JpQ#1fvIGYO;m$8cW8K%#%#
+ local-user ansible privilege level 15
+ local-user ansible service-type terminal ssh
+#
+interface Vlanif1
+ ip address 172.16.98.241 255.255.255.0
+#
+interface MEth0/0/1
+#
+interface GigabitEthernet0/0/1
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/2
+ description Fax Materiales
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/3
+ description D_1027 AP COMPRAS
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/4
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 75
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 75
+#
+interface GigabitEthernet0/0/5
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/6
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/7
+ description ext 51327 Adan Vazquez
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+ poe legacy enable
+#
+interface GigabitEthernet0/0/8
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/9
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/10
+ description ...
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet0/0/11
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/12
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/13
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/14
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/15
+ description impresora
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+#
+interface GigabitEthernet0/0/16
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/17
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/18
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/19
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/20
+ description D_1021 Abastecimiento ext. 51338
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+#
+interface GigabitEthernet0/0/21
+ description 51329
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 107 111
+#
+interface GigabitEthernet0/0/22
+ description LIBRE
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100 107
+#
+interface GigabitEthernet0/0/23
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/24
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/25
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/26
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/27
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/28
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/29
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/30
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/31
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/32
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/33
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/34
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/35
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/36
+ description pendiente 11-6-20
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+#
+interface GigabitEthernet0/0/37
+ description pendiente 11-6-20
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+#
+interface GigabitEthernet0/0/38
+ description IDETRA
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/39
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/40
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/41
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/42
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/43
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/44
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/45
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/46
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/47
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+ undo poe enable
+#
+interface GigabitEthernet0/0/48
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+#
+interface XGigabitEthernet0/0/1
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface XGigabitEthernet0/0/2
+#
+interface XGigabitEthernet0/0/3
+#
+interface XGigabitEthernet0/0/4
+#
+interface NULL0
+#
+ip route-static 0.0.0.0 0.0.0.0 172.16.98.1
+ip route-static 172.16.0.0 255.255.255.0 172.16.130.1
+#
+stelnet server enable
+ssh user admin
+ssh user admin authentication-type password
+ssh user admin service-type stelnet
+ssh user ansible
+ssh user ansible authentication-type password
+ssh user ansible service-type stelnet
+#
+user-interface con 0
+ authentication-mode aaa
+user-interface vty 0 4
+ authentication-mode aaa
+user-interface vty 16 20
+#
+port-group 1-23
+ group-member GigabitEthernet0/0/1
+ group-member GigabitEthernet0/0/2
+ group-member GigabitEthernet0/0/3
+ group-member GigabitEthernet0/0/4
+ group-member GigabitEthernet0/0/5
+ group-member GigabitEthernet0/0/6
+ group-member GigabitEthernet0/0/7
+ group-member GigabitEthernet0/0/8
+ group-member GigabitEthernet0/0/9
+ group-member GigabitEthernet0/0/10
+ group-member GigabitEthernet0/0/11
+ group-member GigabitEthernet0/0/12
+ group-member GigabitEthernet0/0/13
+ group-member GigabitEthernet0/0/14
+ group-member GigabitEthernet0/0/15
+ group-member GigabitEthernet0/0/16
+ group-member GigabitEthernet0/0/17
+ group-member GigabitEthernet0/0/18
+ group-member GigabitEthernet0/0/19
+ group-member GigabitEthernet0/0/20
+ group-member GigabitEthernet0/0/21
+ group-member GigabitEthernet0/0/22
+ group-member GigabitEthernet0/0/23
+#
+port-group 24-48
+ group-member GigabitEthernet0/0/24
+ group-member GigabitEthernet0/0/25
+ group-member GigabitEthernet0/0/26
+ group-member GigabitEthernet0/0/27
+ group-member GigabitEthernet0/0/28
+ group-member GigabitEthernet0/0/29
+ group-member GigabitEthernet0/0/30
+ group-member GigabitEthernet0/0/31
+ group-member GigabitEthernet0/0/32
+ group-member GigabitEthernet0/0/33
+ group-member GigabitEthernet0/0/34
+ group-member GigabitEthernet0/0/35
+ group-member GigabitEthernet0/0/36
+ group-member GigabitEthernet0/0/37
+ group-member GigabitEthernet0/0/38
+ group-member GigabitEthernet0/0/39
+ group-member GigabitEthernet0/0/40
+ group-member GigabitEthernet0/0/41
+ group-member GigabitEthernet0/0/42
+ group-member GigabitEthernet0/0/43
+ group-member GigabitEthernet0/0/44
+ group-member GigabitEthernet0/0/45
+ group-member GigabitEthernet0/0/46
+ group-member GigabitEthernet0/0/47
+#
+return

@@ -26,11 +26,12 @@ aaa
  accounting-scheme default
  domain default
  domain default_admin
- local-user admin password irreversible-cipher %#%#tHR(Q"]FQK^ki2<l7nFV!6\L112$n.lctjHN\MlWVy_B7f%c6-EiX>3/#Er)%#%#
- local-user admin service-type telnet ssh ftp
- local-user soporte password irreversible-cipher %#%#M)~B~Y\{$(*KHrFneT9R</BX"/f-{(xb*rG/AmXHctmtK#9|F#b8<]3do.sF%#%#
- local-user soporte privilege level 15
- local-user soporte service-type ssh ftp
+ local-user admin password irreversible-cipher %#%#ICg*7]^d3&0j~ZRR5%T;S:YQ7B+/<(+:P%4E}88Y1z5I*JessX;)H91p*g~'%#%#
+ local-user admin privilege level 15
+ local-user admin service-type terminal ssh
+ local-user ansible password irreversible-cipher %#%#MsB4+OSoO/VW%Q~RKMp7>z*ARNDs+'{-8y>+7P%XbLe.1bac3@.1aS-e`0v"%#%#
+ local-user ansible privilege level 15
+ local-user ansible service-type terminal ssh
 #
 interface Vlanif1
  ip address 172.16.98.240 255.255.255.0
@@ -60,13 +61,12 @@ interface GigabitEthernet0/0/3
  poe power 6000
 #
 interface GigabitEthernet0/0/4
- shutdown
+ description D_2037 ext. 51401 Delia Macias
  port link-type hybrid
  voice-vlan 71 enable
- port hybrid pvid vlan 105
+ port hybrid pvid vlan 101
  port hybrid tagged vlan 71
- port hybrid untagged vlan 105
- undo poe enable
+ port hybrid untagged vlan 101
 #
 interface GigabitEthernet0/0/5
  port link-type hybrid
@@ -107,12 +107,12 @@ interface GigabitEthernet0/0/9
  port hybrid untagged vlan 104
 #
 interface GigabitEthernet0/0/10
- description D2014 -- 51566-- Carolina Mejia
+ description V_2036 Sala de Juntas1
  port link-type hybrid
  voice-vlan 71 enable
- port hybrid pvid vlan 101
+ port hybrid pvid vlan 60
  port hybrid tagged vlan 71
- port hybrid untagged vlan 101
+ port hybrid untagged vlan 60
 #
 interface GigabitEthernet0/0/11
  description D_2033 Copiadora Kyocera
@@ -204,7 +204,7 @@ interface GigabitEthernet0/0/22
  port hybrid untagged vlan 107
 #
 interface GigabitEthernet0/0/23
- description Videoconferencia
+ description D_2013 Sala de Juntas1 ext 51564 Videoconf
  port link-type hybrid
  voice-vlan 71 enable
  port hybrid pvid vlan 73
@@ -236,7 +236,7 @@ interface GigabitEthernet0/0/26
  port hybrid untagged vlan 107
 #
 interface GigabitEthernet0/0/27
- description sala de juntas
+ description V_2037 Sala de Juntas2
  port link-type hybrid
  voice-vlan 71 enable
  port hybrid pvid vlan 60
@@ -244,15 +244,15 @@ interface GigabitEthernet0/0/27
  port hybrid untagged vlan 60
 #
 interface GigabitEthernet0/0/28
- description D_2044 Manuel Parra
+ description V_2038 Sala de Juntas3
  port link-type hybrid
  voice-vlan 71 enable
- port hybrid pvid vlan 103
+ port hybrid pvid vlan 60
  port hybrid tagged vlan 71
- port hybrid untagged vlan 103
+ port hybrid untagged vlan 60
 #
 interface GigabitEthernet0/0/29
- description access point
+ description AP Access Point Cisco
  port link-type trunk
  voice-vlan 71 enable
  port trunk allow-pass vlan 2 to 4094
@@ -385,7 +385,7 @@ interface GigabitEthernet0/0/45
  port hybrid untagged vlan 112
 #
 interface GigabitEthernet0/0/46
- description V_2014 Camara Caja chica
+ description Camara Caja chica
  port link-type hybrid
  voice-vlan 71 enable
  port hybrid tagged vlan 71
@@ -430,29 +430,19 @@ snmp-agent
 snmp-agent local-engineid 800007DB03845B12779630
 snmp-agent sys-info version v3
 #
-ssh server compatible-ssh1x enable
 stelnet server enable
-ssh authentication-type default password
-ssh user soporte
-ssh user soporte authentication-type password
-ssh user soporte service-type stelnet
+ssh user admin
+ssh user admin authentication-type password
+ssh user admin service-type stelnet
+ssh user ansible
+ssh user ansible authentication-type password
+ssh user ansible service-type stelnet
 ssh client first-time enable
 #
-user-interface maximum-vty 15
 user-interface con 0
- authentication-mode password
- set authentication password cipher $1a$9'Xx/yr&a%$P[YM=e6b=4oyvkM_0`sOE5-$&*V_EO{;D"U.<8qF$
+ authentication-mode aaa
 user-interface vty 0 4
- authentication-mode password
- user privilege level 15
- set authentication password cipher $1a$Yl<EWs=F:R$1qv#6n^(7/!EolDV>QD&Pe>)H.<!Y!H#=1FuoJMJ$
- history-command max-size 30
- protocol inbound telnet
-user-interface vty 5 14
  authentication-mode aaa
- user privilege level 15
 user-interface vty 16 20
- authentication-mode aaa
- user privilege level 15
 #
 return
