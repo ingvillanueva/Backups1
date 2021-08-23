@@ -1,0 +1,1777 @@
+!Software Version V200R007C00SPC500
+#
+sysname MDF-Tetlan
+#
+FTP server enable
+#
+vlan batch 2 6 to 7 10 12 to 13 19 50 60 to 62 70 to 75 80 85
+vlan batch 93 97 to 118 120 130 159 192 200 to 234
+#
+stp mode rstp
+#
+telnet server enable
+#
+clock timezone UTC add 00:00:00
+#
+observe-port 1 interface GigabitEthernet12/0/23
+#
+diffserv domain default
+#
+drop-profile default
+#
+vlan 62
+ description DHCP v62
+vlan 80
+ name LAN-TO-LAN_Poniente
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user admin password irreversible-cipher %#%#!6uW<'L]n7G)7/M"{Fq'QRr8*=$>m-V;b\R=eulD`DccQQW`,01/"O,{w3e9%#%#
+ local-user admin privilege level 15
+ local-user admin service-type terminal ssh
+ local-user huawei password irreversible-cipher %#%#))AoO8PSk"E!l16S7ypF_ZBYM{Ufn-A897V@^:TAk:*c1ocU8Eh^b%@^8sS=%#%#
+ local-user huawei privilege level 15
+ local-user huawei ftp-directory cfcard:
+ local-user huawei service-type ftp
+ local-user ansible password irreversible-cipher %#%#W;._R2}Ej*%*gX+AvB`Jxi~;Aaolg)^12AZw|L%/Y1Gq5@/hQ@}q]YJK6I\#%#%#
+ local-user ansible privilege level 15
+ local-user ansible service-type terminal ssh
+#
+interface Vlanif130
+ ip address 172.16.130.60 255.255.255.0
+#
+interface Eth-Trunk10
+ description LAG Cisco
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+ mode lacp
+#
+interface Eth-Trunk41
+ description NAS_1 HP 32Tb
+ port link-type access
+ port default vlan 100
+#
+interface Eth-Trunk42
+ description NAS_2 HP 32Tb
+ port link-type access
+ port default vlan 100
+#
+interface Eth-Trunk60
+ description LAG_TO_JUAREZ
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+ mode lacp
+#
+interface Ethernet0/0/0
+#
+interface GigabitEthernet1/0/0
+ description D_097 Mini Sw Archivo Tecnico 51345 51528
+ port link-type trunk
+ voice-vlan 71 enable
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet1/0/1
+ description Ext 51649 Apoyo a equipos
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet1/0/2
+#
+interface GigabitEthernet1/0/3
+ description D_100 (antes core)
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/4
+ description D_101 (Antes Core)
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/5
+#
+interface GigabitEthernet1/0/6
+ description Disponible
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/7
+ description Gerencia Mat Rodante
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/8
+ description Homologaciones
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet1/0/9
+ description Ext 51416 Sec mat Rodante
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/10
+ description Ext 51418 Sec Revision
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/11
+ description Ext 51344 Jefatura RG
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/12
+ description AP Material Rodante
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet1/0/13
+ description D_106 GERENCIA MATERIAL RODANTE
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/14
+ description D_111 IMPRESORA INFORMATICA
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/15
+ description D-112 PRUEBAS SANDRA
+ voice-vlan 71 enable
+ port default vlan 71
+#
+interface GigabitEthernet1/0/16
+ description Imp Calidad
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/17
+ description D-114 ok Pruebas Desarrollo
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 120
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 120
+#
+interface GigabitEthernet1/0/18
+ description D_111
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/19
+ description D_116 Ok Soporte tecnico Daneil
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/20
+ description Impresora Admon Capital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 110
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 110
+#
+interface GigabitEthernet1/0/21
+ description 51557
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/22
+#
+interface GigabitEthernet1/0/23
+ description Supervisor Catenaria
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112 to 113
+#
+interface GigabitEthernet1/0/24
+ description Maq Credencializacion
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/25
+ description INTERFACE ESX102
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 102
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 102
+#
+interface GigabitEthernet1/0/26
+#
+interface GigabitEthernet1/0/27
+ description NAS StorCenter px4
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet1/0/28
+ description ESX
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet1/0/29
+ description ESX
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet1/0/30
+ description RK-31 SIEMENS Ext
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet1/0/31
+ description RK_32 SIEMENS
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 61
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 61
+#
+interface GigabitEthernet1/0/32
+ description OK 51611 MAQUINA DESARROLLO
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/33
+ description OK 51515 Sandy-Provisional
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/34
+ description Prueba Sandra
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/35
+ description GIL-2, Prueba DHCP Vlan62
+ port link-type access
+ port default vlan 62
+#
+interface GigabitEthernet1/0/36
+ description HOMOLOGACIONES
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet1/0/37
+ description HOMOLOGACIONES
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet1/0/38
+ description KIOSKO
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 114
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 114
+#
+interface GigabitEthernet1/0/39
+ port link-type access
+ port default vlan 110
+#
+interface GigabitEthernet1/0/40
+ description V-099 ext. 51652  Sandra
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet1/0/41
+ description Gil1 51638
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+ port-mirroring to observe-port 1 inbound
+#
+interface GigabitEthernet1/0/42
+ description HOMOLOGACIONES
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet1/0/43
+ description HOMOLOGACIONES
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet1/0/44
+ description SonicWall Abajo X2
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet1/0/45
+ description SonicWall Abajo X3
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet1/0/46
+ description SonicWall Abajo X0
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet1/0/47
+ description SonicWall Arriba X1
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 97
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 97
+#
+interface GigabitEthernet2/0/0
+ description D_73
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet2/0/1
+ description Maquina Averias
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet2/0/2
+ description D_75
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet2/0/3
+ description D_76
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet2/0/4
+#
+interface GigabitEthernet2/0/5
+ description D_78 (antes alcatel)
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet2/0/6
+ description Pruebas Soporte
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet2/0/7
+ description Pruebas Soporte
+ port default vlan 71
+#
+interface GigabitEthernet2/0/8
+ description Pruebas Soporte
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet2/0/9
+ description Pruebas Soporte
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet2/0/10
+ description Ext 51574
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet2/0/11
+ description D_84 AULA 1
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet2/0/12
+ description D_85 (antes alcatel)
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet2/0/13
+ description Ext 51534 Vias
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet2/0/14
+ description D_87 COPIADORA INGENIERIA
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet2/0/15
+ description Ext 51538
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet2/0/16
+ description 51537 Secilia
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet2/0/17
+ description 51313 Tanya
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet2/0/18
+ description Maq.admon Capital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet2/0/19
+ description Ext 51319
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet2/0/20
+ description Ext 51410
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet2/0/21
+ description Ext 51650
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet2/0/22
+ description Ext 51352
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet2/0/23
+ description Impresora Calidad
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet2/0/24
+ description RK_01 NAS NUEVA HP 1
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet2/0/25
+ description RK_02 NAS NUEVA HP 2
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet2/0/26
+ description antes C2950 puerto F0/3
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet2/0/27
+ description DELL Vlan_100
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet2/0/28
+ description ESX
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet2/0/29
+ description VLAN 95 ESX
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 95
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 95
+#
+interface GigabitEthernet2/0/30
+#
+interface GigabitEthernet2/0/31
+#
+interface GigabitEthernet2/0/32
+ description EQUIPO NUEVO (ANTES D21-VLAN104)
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet2/0/33
+ description RK_10 NAS NUEVA HP 1
+ eth-trunk 41
+#
+interface GigabitEthernet2/0/34
+ description RK_11 NAS NUEVA HP 1
+ eth-trunk 41
+#
+interface GigabitEthernet2/0/35
+ description RK_12 NAS NUEVA HP 2
+ eth-trunk 42
+#
+interface GigabitEthernet2/0/36
+ description RK_13 NAS NUEVA HP 2
+ eth-trunk 42
+#
+interface GigabitEthernet2/0/37
+ description EQUIPO NUEVO
+ port default vlan 100
+#
+interface GigabitEthernet2/0/38
+ description NAS1
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet2/0/39
+ description SAN CONTROLADORA 1
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet2/0/40
+ description PUERTO ESPEJO
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet2/0/41
+ description SAN
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet2/0/42
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet2/0/43
+ description Server
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet2/0/44
+ description SonicWall Arriba X2
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet2/0/45
+ description SonicWall Arriba X3
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet2/0/46
+ description SonicWall Arriba X0
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet2/0/47
+ description SonicWall Arriba X1
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 97
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 97
+#
+interface GigabitEthernet3/0/0
+ description D_49
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 106
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 106
+#
+interface GigabitEthernet3/0/1
+ description D_50
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 106
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 106
+#
+interface GigabitEthernet3/0/2
+ description D_51
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 106
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 106
+#
+interface GigabitEthernet3/0/3
+ description Martha Contabilidad
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 106
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 106
+#
+interface GigabitEthernet3/0/4
+ description Ext 51311
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet3/0/5
+ description D53 ext. 51408 Karla Castañeda
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet3/0/6
+ description Ext 51323
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet3/0/7
+ port link-type access
+ port default vlan 60
+#
+interface GigabitEthernet3/0/8
+ description D_57
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/9
+ description D_58
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/10
+ description D_59
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/11
+ description D_60 Extructuras
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 112
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 112
+#
+interface GigabitEthernet3/0/12
+ description D_61
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 118
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 118
+#
+interface GigabitEthernet3/0/13
+ description D_62
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/14
+ description D_63
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/15
+ description D_64
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/16
+ description D_72
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet3/0/17
+ description D_66
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet3/0/18
+ description D_67 Servidor de Respaldos Julio
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet3/0/19
+ description D_68 Livier Duarte
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet3/0/20
+ description Jef Capital Humano
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet3/0/21
+ description 51504 D70 Enfermera
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet3/0/22
+ description Ms Bombardier
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet3/0/23
+ description Maq Mat Rodante
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/24
+ description V_50 Manto preventivo (Quiroz)
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/25
+ description EXT 51312
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet3/0/26
+ description Bombardier
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet3/0/27
+ description Wifi-Bombardier
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet3/0/28
+#
+interface GigabitEthernet3/0/29
+#
+interface GigabitEthernet3/0/30
+ description Switch Tarjetas
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 97
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 97
+#
+interface GigabitEthernet3/0/31
+ description -OK-  V-060 AP-AULA 1
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet3/0/32
+ description V-070
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/33
+ description V_071 Impresora Archivo Tecnico
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet3/0/34
+ description maq rev General
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100 113
+#
+interface GigabitEthernet3/0/35
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/36
+ description Ext 51568
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/37
+ description AP Material Rodante
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet3/0/38
+ description ADMINISTRACION
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet3/0/39
+ description Antes P Axtel V 97
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 113
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 113
+#
+interface GigabitEthernet3/0/40
+ description V-085 Ricardo 2 pruebas
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet3/0/41
+ description V096 Impresora Patricia
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet3/0/42
+#
+interface GigabitEthernet3/0/43
+#
+interface GigabitEthernet3/0/44
+#
+interface GigabitEthernet3/0/45
+#
+interface GigabitEthernet3/0/46
+#
+interface GigabitEthernet3/0/47
+#
+interface GigabitEthernet4/0/0
+#
+interface GigabitEthernet4/0/1
+ description Maquina Desarrollo
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/2
+ description Ext 51603
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/3
+ description Ext 51607
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/4
+ description Laptop Hugo ext 51532
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/5
+ description Calidad
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/6
+ description Ext 51351
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/7
+ description Ext 51317
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/8
+ description PRUEBA AXTEL
+ port default vlan 97
+#
+interface GigabitEthernet4/0/9
+ description DNS Alterno
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 50
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 50
+#
+interface GigabitEthernet4/0/10
+ description D_35
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/11
+ description D_36
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/12
+ description antes SW06 p07 Switches-wireless
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet4/0/13
+ description Grabador de voz
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet4/0/14
+ description antes SW06 p08 Switches-wireless
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet4/0/15
+ description Coord.Responsabilidad Social
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet4/0/16
+ description PTO D41(Rack)
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet4/0/17
+ description UPS Site
+#
+interface GigabitEthernet4/0/18
+ description Calidad
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/19
+ description Calidad
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/20
+ description LYRA Axtel
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 97
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 97
+#
+interface GigabitEthernet4/0/21
+ description D_46
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/22
+ description Maq Paty de la T
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 111
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 111
+#
+interface GigabitEthernet4/0/23
+ description D_48
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 106
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 106
+#
+interface GigabitEthernet4/0/24
+ description Maq Admon Capital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet4/0/25
+ description Ext 51610
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet4/0/26
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/27
+ description Maq Desarrollo
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/28
+ description Maq Desarrollo
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/29
+ description Ext 51481
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/30
+ description Ext 51353
+ port link-type hybrid
+ voice-vlan 72 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 72
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/31
+ description Maq Enrique Jimenez
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet4/0/32
+ description LYRA
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet4/0/33
+ description Aud Externa
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 106
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 106
+#
+interface GigabitEthernet4/0/34
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet4/0/35
+ description Bombardier
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet4/0/36
+ description Maq Homologaciones
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet4/0/37
+ description Archivo Ing
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet4/0/38
+ description Imp Homologaciones
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet4/0/39
+ description D-132 Doctor
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet4/0/40
+ description D-133 ext. 51613 Medico
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet4/0/41
+ description Checador Mano
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 110
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 110
+#
+interface GigabitEthernet4/0/42
+ description Impresora Cap. Humano Centro
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet4/0/43
+#
+interface GigabitEthernet4/0/44
+#
+interface GigabitEthernet4/0/45
+#
+interface GigabitEthernet4/0/46
+#
+interface GigabitEthernet4/0/47
+#
+interface GigabitEthernet12/0/0
+ description Aula Virtual
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet12/0/1
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/2
+ description Aula Virtual
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/3
+ description D-004 Aula 3 PCs
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/4
+ description IMPRESORA CAPITAL
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/5
+ description Sala Capital
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/6
+ description Checador Portatil Alelhi
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet12/0/7
+ description Ext 51407
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/8
+ description Maq Capital Humano
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/9
+ description D_10
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/10
+ description Ext 51357
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/11
+ description Ext 51314
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/12
+ description Ext 51539
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/13
+ description Sec responsabilidad.social
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/14
+ description Maquina  Entrenamiento
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/15
+ description sec resp social
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/16
+ description D_17
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 115
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 115
+#
+interface GigabitEthernet12/0/17
+ description Capital Humano
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/18
+ description Lic. Sandra Luz
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 109
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 109
+#
+interface GigabitEthernet12/0/19
+ description D_20
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet12/0/20
+ description D_021 Ana Pruebas
+ port link-type access
+#
+interface GigabitEthernet12/0/21
+ description Tanya
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 100
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 100
+#
+interface GigabitEthernet12/0/22
+ description ESX para LYRA
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 97
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 97
+#
+interface GigabitEthernet12/0/23
+ description Gil2 noID antes v75
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 104
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 104
+#
+interface GigabitEthernet12/0/24
+ undo negotiation auto
+ eth-trunk 10
+#
+interface GigabitEthernet12/0/25
+ undo negotiation auto
+ eth-trunk 10
+#
+interface GigabitEthernet12/0/26
+ undo negotiation auto
+ eth-trunk 10
+#
+interface GigabitEthernet12/0/27
+ undo negotiation auto
+ eth-trunk 10
+#
+interface GigabitEthernet12/0/28
+ description Datos Linea 3
+ port link-type access
+ port default vlan 115
+#
+interface GigabitEthernet12/0/29
+ description Uninet CME-3400E-p1
+ port link-type access
+ port default vlan 220
+#
+interface GigabitEthernet12/0/30
+ description Uninet
+ port link-type access
+ port default vlan 220
+#
+interface GigabitEthernet12/0/31
+ description Uninet
+ port link-type access
+ port default vlan 220
+#
+interface GigabitEthernet12/0/32
+ description D_119 AP SIT_BASTETLAN
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet12/0/33
+ description CAMARA APC
+ port link-type access
+ voice-vlan 71 enable
+ port default vlan 100
+#
+interface GigabitEthernet12/0/34
+ description Lan-to-Lan Mikrotick - Poniente, Vlan80
+ port link-type access
+ voice-vlan 71 enable
+ port default vlan 80
+#
+interface GigabitEthernet12/0/35
+ description UNINET CISCO ME3400
+ port link-type access
+ voice-vlan 72 enable
+ port default vlan 220
+#
+interface GigabitEthernet12/0/36
+ description PBX Central
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 70
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 70
+#
+interface GigabitEthernet12/0/37
+ description PBX LR
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 70
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 70
+#
+interface GigabitEthernet12/0/38
+ description Movius
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 70
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 70
+#
+interface GigabitEthernet12/0/39
+ description PBX ECS
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 70
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 70
+#
+interface GigabitEthernet12/0/40
+ description PBX ESIGHT
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 70
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 70
+#
+interface GigabitEthernet12/0/41
+ description LIBRE(No conectado)PBX Movius PTO MGNT
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 60
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 60
+#
+interface GigabitEthernet12/0/42
+ description PBX ECS PTO MGNT 4-7 CISCO
+ port link-type access
+ port default vlan 50
+#
+interface GigabitEthernet12/0/43
+ description PBX ESIGHT 4/8 CISCO
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 70
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 70
+#
+interface GigabitEthernet12/0/44
+ description PBX VideoConferencia SMC
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 73
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 73
+#
+interface GigabitEthernet12/0/45
+ description VideoConferencia MCU
+ port link-type hybrid
+ voice-vlan 71 enable
+ port hybrid pvid vlan 73
+ port hybrid tagged vlan 71
+ port hybrid untagged vlan 73
+#
+interface GigabitEthernet12/0/46
+ description GIL 104
+ port link-type access
+ port default vlan 104
+#
+interface GigabitEthernet12/0/47
+ description GIL 104
+ port link-type access
+ port default vlan 104
+#
+interface XGigabitEthernet6/0/0
+ description UPLINK-JUAREZ
+ eth-trunk 60
+#
+interface XGigabitEthernet6/0/1
+ description UPLINK-JUAREZ
+ eth-trunk 60
+#
+interface XGigabitEthernet6/0/2
+#
+interface XGigabitEthernet6/0/3
+#
+interface XGigabitEthernet6/0/4
+#
+interface XGigabitEthernet6/0/5
+#
+interface XGigabitEthernet6/0/6
+#
+interface XGigabitEthernet6/0/7
+#
+interface XGigabitEthernet7/0/0
+ description UPLINK-JUAREZ
+ eth-trunk 60
+#
+interface XGigabitEthernet7/0/1
+ description UPLINK-JUAREZ
+ eth-trunk 60
+#
+interface XGigabitEthernet7/0/2
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface XGigabitEthernet7/0/3
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface XGigabitEthernet7/0/4
+#
+interface XGigabitEthernet7/0/5
+#
+interface XGigabitEthernet7/0/6
+#
+interface XGigabitEthernet7/0/7
+#
+interface NULL0
+#
+cpu-defend policy test
+ auto-defend enable
+#
+ip route-static 0.0.0.0 0.0.0.0 172.16.130.1
+ip route-static 172.16.0.0 255.255.0.0 172.16.130.1
+#
+snmp-agent
+snmp-agent local-engineid 800007DB03845B124A9290
+snmp-agent community write cipher %#%#,$WZXu#mD$FtAS(k"i-5eK`m#z#j*0V~)ZS`}\lUPpFtBv*Av'3WW;PZj;H6VRCyMnZp0&z*v.&9UWu@%#%#
+snmp-agent sys-info version v3
+#
+ssh server compatible-ssh1x enable
+stelnet server enable
+ssh user admin
+ssh user admin authentication-type password
+ssh user admin service-type stelnet
+ssh user ansible
+ssh user ansible authentication-type password
+ssh user ansible service-type stelnet
+#
+cpu-defend-policy test global
+#
+user-interface con 0
+ authentication-mode aaa
+user-interface vty 0 4
+ authentication-mode aaa
+ user privilege level 15
+user-interface vty 16 20
+#
+wlan
+ wlan work-group default
+#
+return
